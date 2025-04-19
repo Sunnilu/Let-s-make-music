@@ -19,3 +19,11 @@ keys.json – All major key signatures and their corresponding notes
 index.html – A basic browser UI for testing note submission
 
 main.js – Connects to your WebSocket server and displays note updates live
+
+
+🧰 Tech Stack
+Component Tech
+Backend API Node.js + Express
+Real-time Events WebSocket (Socket.IO)
+Database (Optional) PostgreSQL or JSON file
+Frontend HTML + JS (or React later)
