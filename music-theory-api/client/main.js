@@ -62,8 +62,26 @@ async function loadScores() {
   });
 }
 
+// 📝 Submit score to server
+async function submitScore(event) {
+  event.preventDefault();
+  const username = document.getElementById('username').value.trim();
+  const points = parseInt(document.getElementById('points').value);
+
+  if (!username || isNaN(points)) return;
+
+  const res = await fetch('http://localhost:3000/api/scores', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ username, points })
+  });
+
+  const result = await res.json();
+  console.log('Submitted:', result);
+  loadScores();
+  document.getElementById('scoreForm').reset();
+}
+
 // 🚀 Init
 loadKeys();
 loadScores();
-
-
