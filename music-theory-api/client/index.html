@@ -1,0 +1,21 @@
+<!-- client/index.html -->
+<h2>Live Note Demo</h2>
+<input id="note" placeholder="Type a note (C, D#, etc)" />
+<button onclick="sendNote()">Send</button>
+<ul id="notes"></ul>
+
+<script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+<script>
+  const socket = io('http://localhost:3000');
+
+  socket.on('note-display', (note) => {
+    const li = document.createElement('li');
+    li.textContent = `🎵 ${note}`;
+    document.getElementById('notes').appendChild(li);
+  });
+
+  function sendNote() {
+    const note = document.getElementById('note').value;
+    socket.emit('note-played', note);
+  }
+</script>
