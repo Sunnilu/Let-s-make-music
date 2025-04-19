@@ -1,0 +1,14 @@
+music-theory-api/
+├── client/               # Frontend
+│   ├── index.html
+│   └── main.js
+├── server/
+│   ├── server.js         # Express + Socket.IO
+│   ├── api/
+│   │   ├── notes.js      # Note info API
+│   │   ├── keys.js       # Key signature logic
+│   │   └── scores.js     # Game/score logic
+│   └── utils/            # Helper functions (intervals, MIDI, etc.)
+├── data/
+│   └── keys.json         # List of key signatures, intervals
+├── package.json
