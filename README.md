@@ -52,3 +52,10 @@ Backend API Node.js + Express
 Real-time Events WebSocket (Socket.IO)
 Database (Optional) PostgreSQL or JSON file
 Frontend HTML + JS (or React later)
+
+What You’ll Need to Build
+Feature Tech Used
+Static site with interface HTML + JS (or React)
+API for notes/keys Node.js + Express
+Real-time interactions Socket.IO (WebSockets)
+User progress (optional) PostgreSQL / JSON storage
