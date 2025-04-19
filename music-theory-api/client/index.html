@@ -42,6 +42,14 @@
   <h2>🏆 Live Scores</h2>
   <ul id="scoreList"></ul>
 
+  <h2>📝 Submit Your Score</h2>
+<form id="scoreForm" onsubmit="submitScore(event)">
+  <input type="text" id="username" placeholder="Your Name" required />
+  <input type="number" id="points" placeholder="Score" required />
+  <button type="submit">Submit Score</button>
+</form>
+
+
   <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
   <script src="main.js"></script>
 </body>
