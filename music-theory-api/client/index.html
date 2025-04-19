@@ -1,21 +1,36 @@
-<!-- client/index.html -->
-<h2>Live Note Demo</h2>
-<input id="note" placeholder="Type a note (C, D#, etc)" />
-<button onclick="sendNote()">Send</button>
-<ul id="notes"></ul>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Music Theory Trainer</title>
+</head>
+<body>
+  <h1>🎵 Music Theory Real-Time Trainer</h1>
 
-<script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+  <label for="noteInput">Play a Note:</label>
+  <input type="text" id="noteInput" placeholder="e.g., C, D#, F">
+  <button onclick="sendNote()">Send Note</button>
+
+  <ul id="notesList"></ul>
+
+  <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
 <script>
   const socket = io('http://localhost:3000');
 
-  socket.on('note-display', (note) => {
+  socket.on('note', function(note) {
+    const notesList = document.getElementById('notesList');
     const li = document.createElement('li');
-    li.textContent = `🎵 ${note}`;
-    document.getElementById('notes').appendChild(li);
+    li.textContent = note;
+    notesList.appendChild(li);
   });
 
   function sendNote() {
-    const note = document.getElementById('note').value;
-    socket.emit('note-played', note);
+    const noteInput = document.getElementById('noteInput');
+    const note = noteInput.value;
+    socket.emit('note', note);
+    noteInput.value = '';
   }
-</script>
