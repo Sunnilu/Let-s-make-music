@@ -1,5 +1,7 @@
 # Let-s-make-music
 
+                     a single app with 3 interactive learning areas
+
 music theory + real-time interactivity = a powerful learning experience! With WebSockets and a solid API.
 
 1. Live Note Recognition
