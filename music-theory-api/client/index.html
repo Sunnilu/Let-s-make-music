@@ -4,33 +4,45 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Music Theory Trainer</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      max-width: 600px;
+      margin: auto;
+      padding: 20px;
+    }
+    input, select, button {
+      padding: 8px;
+      margin: 10px 0;
+    }
+    ul {
+      padding-left: 20px;
+    }
+    h2 {
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 5px;
+    }
+  </style>
 </head>
 <body>
   <h1>🎵 Music Theory Real-Time Trainer</h1>
 
-  <label for="noteInput">Play a Note:</label>
+  <h2>🎼 Play a Note</h2>
+  <label for="noteInput">Note:</label>
   <input type="text" id="noteInput" placeholder="e.g., C, D#, F">
   <button onclick="sendNote()">Send Note</button>
 
   <ul id="notesList"></ul>
 
+  <h2>🔑 Select a Key Signature</h2>
+  <label for="keySelect">Choose Key:</label>
+  <select id="keySelect"></select>
+  <ul id="keyNotes"></ul>
+
+  <h2>🏆 Live Scores</h2>
+  <ul id="scoreList"></ul>
+
   <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
   <script src="main.js"></script>
 </body>
 </html>
-<script>
-  const socket = io('http://localhost:3000');
-
-  socket.on('note', function(note) {
-    const notesList = document.getElementById('notesList');
-    const li = document.createElement('li');
-    li.textContent = note;
-    notesList.appendChild(li);
-  });
-
-  function sendNote() {
-    const noteInput = document.getElementById('noteInput');
-    const note = noteInput.value;
-    socket.emit('note', note);
-    noteInput.value = '';
-  }
