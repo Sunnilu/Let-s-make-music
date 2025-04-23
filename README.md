@@ -73,3 +73,14 @@ This reads your code and extracts comments from your API files to auto-generate 
 
 2. swagger-ui-express
 This takes that generated spec and renders it as a beautiful, interactive web-based API explorer.
+
+PAGINATION
+📦 What is Pagination?
+Pagination is the process of breaking a large list of items (like scores) into smaller, manageable chunks — or pages — when displaying or fetching them.
+
+🧠 Why Use It?
+✅ Performance: Reduces the load on your server and database
+
+✅ Speed: Faster page loads, especially with large datasets
+
+✅ User Experience: Easier for users to scroll through data without being overwhelmed
