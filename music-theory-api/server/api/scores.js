@@ -5,6 +5,12 @@ const path = require('path');
 const router = express.Router();
 const scoresFile = path.join(__dirname, '../../data/scores.json');
 
+// Simulated test user middleware
+router.use((req, res, next) => {
+  req.user = { username: 'TestUser' }; // 👤 Test user always attached
+  next();
+});
+
 // Load scores
 function getScores() {
   if (!fs.existsSync(scoresFile)) return [];
@@ -36,9 +42,11 @@ router.get('/', (req, res) => {
 
 // POST /api/scores
 router.post('/', (req, res) => {
-  const { username, points } = req.body;
-  if (!username || typeof points !== 'number') {
-    return res.status(400).json({ error: 'Username and numeric points required.' });
+  const { points } = req.body;
+  const username = req.user?.username || 'Anonymous';
+
+  if (typeof points !== 'number') {
+    return res.status(400).json({ error: 'Numeric points required.' });
   }
 
   const scores = getScores();
