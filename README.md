@@ -124,3 +124,20 @@ After that, it serves all requests from memory — no more disk reads.
 
 This speeds up your app and reduces load! You will see this message:
 🔄 Loading keys into memory cache
+
+TEST USER
+✅ What Does “Simulate a Test User” Mean?
+Instead of building a full user registration & login system, you:
+
+Pretend a specific user is logged in
+
+Automatically attach that user's info to requests (on the server side)
+
+Let endpoints behave as if the user is authenticated
+
+🧪 Why It’s Useful:
+
+✅ Benefit
+✔️ No auth setup needed You don’t need JWTs, sessions, etc.
+🧪 Testing-ready Reviewers and teammates can use the API right away
+🔐 Upgradeable You can later add real auth (like JWT) with minimal refactor
