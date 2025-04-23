@@ -84,3 +84,9 @@ Pagination is the process of breaking a large list of items (like scores) into s
 ✅ Speed: Faster page loads, especially with large datasets
 
 ✅ User Experience: Easier for users to scroll through data without being overwhelmed
+
+So instead of returning all scores every time, it will support:
+page=1: Show the first page of results
+
+limit=10: Show 10 scores per page
+
