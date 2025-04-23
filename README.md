@@ -117,5 +117,14 @@ Reading from memory is much faster than reading from the file system.
 📈 Scalable Prepares your app to handle more users with better performance
 used the built-in Node.js memory cache via a simple JavaScript variable.
 
+🔍 How It Works:
+The first time /api/keys or /api/keys/:key is called, it loads keys.json from disk.
+
+After that, it serves all requests from memory — no more disk reads.
+
+This speeds up your app and reduces load!
+
+
+
 
 
