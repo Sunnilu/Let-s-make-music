@@ -124,9 +124,3 @@ After that, it serves all requests from memory — no more disk reads.
 
 This speeds up your app and reduces load! You will see this message:
 🔄 Loading keys into memory cache
-
-
-
-
-
-
