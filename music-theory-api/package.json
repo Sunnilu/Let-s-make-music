@@ -1,22 +1,24 @@
 {
   "name": "music-theory-api",
   "version": "1.0.0",
+  "description": "A real-time music theory trainer API with WebSockets, Swagger docs, unit tests, pagination, caching, and simulated authentication.",
   "main": "index.js",
   "scripts": {
+    "start": "node server/server.js",
     "test": "jest"
   },
   "keywords": [],
-  "author": "",
+  "author": "Suntha Lucas",
   "license": "ISC",
-  "description": "",
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^5.1.0",
-    "socket.io": "^4.8.1"
+    "socket.io": "^4.8.1",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1"
   },
   "devDependencies": {
     "jest": "^29.7.0",
-    "supertest": "^6.3.3"
+    "supertest": "^6.3.4"
   }
 }
-
