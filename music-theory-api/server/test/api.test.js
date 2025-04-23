@@ -1,49 +1,58 @@
-// server/test/api.test.js
-const request = require('supertest');
+// server/server.js
 const express = require('express');
-const keysRouter = require('../api/keys');
-const notesRouter = require('../api/notes');
-const scoresRouter = require('../api/scores');
+const http = require('http');
+const { Server } = require('socket.io');
+const cors = require('cors');
+const path = require('path');
+const notesRouter = require('./api/notes');
+const keysRouter = require('./api/keys');
+const scoresRouter = require('./api/scores');
+const swaggerJsdoc = require('swagger-jsdoc');
+const swaggerUi = require('swagger-ui-express');
 
 const app = express();
+const server = http.createServer(app);
+const io = new Server(server, {
+  cors: {
+    origin: '*',
+    methods: ['GET', 'POST']
+  }
+});
+
+app.use(cors());
 app.use(express.json());
-app.use('/api/keys', keysRouter);
+app.use(express.static(path.join(__dirname, '../client')));
+
+// API routes
 app.use('/api/notes', notesRouter);
+app.use('/api/keys', keysRouter);
 app.use('/api/scores', scoresRouter);
 
-describe('🎼 Music Theory API', () => {
-  it('GET /api/notes should return note list', async () => {
-    const res = await request(app).get('/api/notes');
-    expect(res.statusCode).toBe(200);
-    expect(res.body.notes).toContain('C');
-  });
+// Swagger setup
+const swaggerSpec = swaggerJsdoc({
+  definition: {
+    openapi: '3.0.0',
+    info: {
+      title: 'Music Theory API',
+      version: '1.0.0',
+      description: 'API for real-time music theory trainer'
+    }
+  },
+  apis: ['./server/api/*.js']
+});
 
-  it('GET /api/keys should return all keys', async () => {
-    const res = await request(app).get('/api/keys');
-    expect(res.statusCode).toBe(200);
-    expect(res.body.keys).toHaveProperty('C');
-  });
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
-  it('GET /api/keys/:key should return correct key scale', async () => {
-    const res = await request(app).get('/api/keys/C');
-    expect(res.statusCode).toBe(200);
-    expect(res.body.scale).toEqual(
-      expect.arrayContaining(['C', 'D', 'E', 'F', 'G', 'A', 'B'])
-    );
+// WebSocket
+io.on('connection', (socket) => {
+  console.log('🎶 User connected');
+  socket.on('note-played', (note) => {
+    console.log('Note received:', note);
+    io.emit('note-update', note);
   });
+});
 
-  it('POST /api/scores should add a score', async () => {
-    const res = await request(app).post('/api/scores').send({
-      username: 'TestUser',
-      points: 88
-    });
-    expect(res.statusCode).toBe(201);
-    expect(res.body.score).toMatchObject({ username: 'TestUser', points: 88 });
-  });
-
-  it('GET /api/scores should return list of scores', async () => {
-    const res = await request(app).get('/api/scores');
-    expect(res.statusCode).toBe(200);
-    expect(Array.isArray(res.body.scores)).toBe(true);
-  });
+const PORT = 3000;
+server.listen(PORT, () => {
+  console.log(`🎵 Music Theory API server running at http://localhost:${PORT}`);
 });
