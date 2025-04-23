@@ -46,4 +46,14 @@ describe('🎼 Music Theory API', () => {
     expect(res.statusCode).toBe(200);
     expect(Array.isArray(res.body.scores)).toBe(true);
   });
+
+  it('GET /api/scores paginates results', async () => {
+    const res = await request(app).get('/api/scores?page=1&limit=2');
+    expect(res.statusCode).toBe(200);
+    expect(res.body).toHaveProperty('scores');
+    expect(res.body.scores.length).toBeLessThanOrEqual(2);
+    expect(res.body).toHaveProperty('page', 1);
+    expect(res.body).toHaveProperty('limit', 2);
+    expect(res.body).toHaveProperty('total');
+  });
 });
