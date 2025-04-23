@@ -145,3 +145,10 @@ Let endpoints behave as if the user is authenticated
 What I did:
 Create a middleware that attaches a fake user to req.user
 Use req.user.username in the /api/scores POST route to simulate user-based scoring
+
+
+Ways that I can test in POSTMAN:
+GET http://localhost:3000/api/scores
+
+I can also test with pagination in POSTMAN:
+http://localhost:3000/api/scores?page=1&limit=5
