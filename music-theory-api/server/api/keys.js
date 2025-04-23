@@ -1,14 +1,11 @@
-// server/api/keys.js
 const express = require('express');
 const router = express.Router();
-const keysData = require('../../data/keys.json');
+const keysData = require('../../data/keys.json');  // ✅ double-check this path
 
-// GET all key signatures
 router.get('/', (req, res) => {
   res.json({ keys: keysData });
 });
 
-// GET notes for a specific key
 router.get('/:key', (req, res) => {
   const key = req.params.key;
   const scale = keysData[key];
