@@ -98,5 +98,23 @@ Infinite scrolling
 
 Leaderboards that only load what’s needed
 
+CACHING
+⚡ Why Use Caching?
+Caching stores data temporarily in memory so your server doesn’t have to read the same data from disk or a database every time it’s needed.
+
+🔍 In My Project:
+My /api/keys endpoint returns static data (key signatures) from keys.json.
+
+That file doesn't change often, but is accessed frequently by the app and quiz feature.
+
+Reading from memory is much faster than reading from the file system.
+
+🎯 Benefits of Caching:
+
+✅ Why It Helps
+🚀 Faster Response Reduces latency on every request
+💾 Less Disk Access File system reads are eliminated after the first call
+📈 Scalable Prepares your app to handle more users with better performance
+
 
 
