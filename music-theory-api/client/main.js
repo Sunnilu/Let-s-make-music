@@ -1,6 +1,8 @@
 // client/main.js
 const socket = io('http://localhost:3000');
 
+let allKeys = {}; // for quiz access
+
 // 🎵 Real-time note updates
 socket.on('note-update', (note) => {
   const li = document.createElement('li');
@@ -21,8 +23,9 @@ function sendNote() {
 async function loadKeys() {
   const res = await fetch('http://localhost:3000/api/keys');
   const data = await res.json();
-  const select = document.getElementById('keySelect');
+  allKeys = data.keys;
 
+  const select = document.getElementById('keySelect');
   Object.keys(data.keys).forEach(key => {
     const option = document.createElement('option');
     option.value = key;
@@ -34,6 +37,8 @@ async function loadKeys() {
     const selectedKey = select.value;
     displayScale(selectedKey);
   });
+
+  generateQuizKey(); // init quiz on load
 }
 
 // 🧠 Display notes of selected key
@@ -82,6 +87,37 @@ async function submitScore(event) {
   document.getElementById('scoreForm').reset();
 }
 
+// 🎯 Key Signature Quiz Logic
+let currentQuizKey = '';
+
+function generateQuizKey() {
+  const keys = Object.keys(allKeys);
+  currentQuizKey = keys[Math.floor(Math.random() * keys.length)];
+  document.getElementById('quizKey').textContent = currentQuizKey;
+}
+
+function submitQuizAnswer() {
+  const userInput = document.getElementById('userAnswer').value.trim();
+  if (!userInput) return;
+
+  const userNotes = userInput.split(',').map(n => n.trim().toUpperCase());
+  const correctNotes = allKeys[currentQuizKey].map(n => n.toUpperCase());
+
+  const isCorrect = userNotes.length === correctNotes.length &&
+    userNotes.every((n, i) => n === correctNotes[i]);
+
+  const feedback = document.getElementById('quizFeedback');
+  if (isCorrect) {
+    feedback.textContent = `✅ Correct! The ${currentQuizKey} scale is: ${correctNotes.join(', ')}`;
+  } else {
+    feedback.textContent = `❌ Try again! The correct notes for ${currentQuizKey} are: ${correctNotes.join(', ')}`;
+  }
+
+  generateQuizKey(); // load next question
+  document.getElementById('userAnswer').value = '';
+}
+
 // 🚀 Init
 loadKeys();
 loadScores();
+
