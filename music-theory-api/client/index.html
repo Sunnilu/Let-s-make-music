@@ -43,12 +43,20 @@
   <ul id="scoreList"></ul>
 
   <h2>📝 Submit Your Score</h2>
-<form id="scoreForm" onsubmit="submitScore(event)">
-  <input type="text" id="username" placeholder="Your Name" required />
-  <input type="number" id="points" placeholder="Score" required />
-  <button type="submit">Submit Score</button>
-</form>
+  <form id="scoreForm" onsubmit="submitScore(event)">
+    <input type="text" id="username" placeholder="Your Name" required />
+    <input type="number" id="points" placeholder="Score" required />
+    <button type="submit">Submit Score</button>
+  </form>
 
+  <h2>🎯 Key Signature Quiz</h2>
+  <div id="quizSection">
+    <p><strong>Key:</strong> <span id="quizKey">?</span></p>
+    <label for="userAnswer">Enter the notes (comma-separated):</label><br>
+    <input type="text" id="userAnswer" placeholder="C, D, E, F, G, A, B">
+    <button onclick="submitQuizAnswer()">Submit Answer</button>
+    <p id="quizFeedback"></p>
+  </div>
 
   <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
   <script src="main.js"></script>
