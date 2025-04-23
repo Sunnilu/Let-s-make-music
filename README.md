@@ -61,3 +61,15 @@ Static site with interface HTML + JS (or React)
 API for notes/keys Node.js + Express
 Real-time interactions Socket.IO (WebSockets)
 User progress (optional) PostgreSQL / JSON storage
+
+SWAGGER-
+🔍 What Is Swagger?
+Swagger is a set of tools that help you document, visualize, and test your APIs in a way that’s easy for humans (and other developers) to understand and use.
+
+I am using two Swagger tools right now:
+
+1. swagger-jsdoc
+This reads your code and extracts comments from your API files to auto-generate an OpenAPI (Swagger) JSON spec.
+
+2. swagger-ui-express
+This takes that generated spec and renders it as a beautiful, interactive web-based API explorer.
