@@ -24,9 +24,9 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, '../client')));
 
 // API routes
-app.use('/api/notes', notesRouter);
-app.use('/api/keys', keysRouter);
-app.use('/api/scores', scoresRouter);
+const notesRouter = require('../api/notes');
+const keysRouter = require('../api/keys');
+const scoresRouter = require('../api/scores');
 
 // Swagger setup
 const swaggerSpec = swaggerJsdoc({
