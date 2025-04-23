@@ -1,0 +1,16 @@
+music-theory-api/
+├── client/               # Frontend (HTML, JS or React)
+│   ├── index.html
+│   └── main.js
+├── server/               # Backend with Express + Socket.IO
+│   ├── server.js         # Entry point
+│   ├── api/              # REST API routes
+│   │   ├── notes.js      # Endpoints for note logic
+│   │   ├── keys.js       # Key signature logic
+│   │   └── scores.js     # Game scores and users
+│   └── utils/            # Helper functions
+│       └── theory.js     # Music theory functions
+├── data/                 # Static JSON data (scales, notes, etc.)
+│   └── keys.json
+├── package.json
+└── README.md
