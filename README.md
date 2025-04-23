@@ -141,3 +141,7 @@ Let endpoints behave as if the user is authenticated
 ✔️ No auth setup needed You don’t need JWTs, sessions, etc.
 🧪 Testing-ready Reviewers and teammates can use the API right away
 🔐 Upgradeable You can later add real auth (like JWT) with minimal refactor
+
+What I did:
+Create a middleware that attaches a fake user to req.user
+Use req.user.username in the /api/scores POST route to simulate user-based scoring
