@@ -115,6 +115,7 @@ Reading from memory is much faster than reading from the file system.
 🚀 Faster Response Reduces latency on every request
 💾 Less Disk Access File system reads are eliminated after the first call
 📈 Scalable Prepares your app to handle more users with better performance
+used the built-in Node.js memory cache via a simple JavaScript variable.
 
 
 
