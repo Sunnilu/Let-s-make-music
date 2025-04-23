@@ -122,7 +122,9 @@ The first time /api/keys or /api/keys/:key is called, it loads keys.json from di
 
 After that, it serves all requests from memory — no more disk reads.
 
-This speeds up your app and reduces load!
+This speeds up your app and reduces load! You will see this message:
+🔄 Loading keys into memory cache
+
 
 
 
